@@ -19,15 +19,30 @@ const messageRoutes = require('./routes/message');
 const userRoutes = require('./routes/user');
 
 const server = http.createServer(app);
+
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://real-time-chat-app-cyan-seven.vercel.app'
+];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+};
+
 const io = new Server(server, {
-  cors: {
-    origin: '*', // Update this in production
-    methods: ['GET', 'POST']
-  }
+  cors: corsOptions
 });
 
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Use authentication routes
