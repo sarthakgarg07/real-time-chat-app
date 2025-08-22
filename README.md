@@ -119,4 +119,4 @@ Follow these instructions to set up and run the project on your local machine fo
     The React application should now be running on `http://localhost:5173`.
 
 3.  **Open the App:**
-    -   Open your web browser and navigate to `http://localhost:5173`. You should see the login page
+    -   Open your web browser and navigate to `http://localhost:5173`. You should see the login page.
